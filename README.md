@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Solana Blinks Example
 
-## Getting Started
+This project allows users to donate SOL to a specific account via a web interface. It includes two main endpoints: `GET` and `POST`, which handle donation actions.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+  - [GET](#get)
+  - [POST](#post)
+- [License](#license)
+
+## Overview
+
+This project provides a simple way for users to donate SOL to a predefined account using the Solana blockchain. It handles both the creation of donation actions and the processing of transactions.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rkmonarch/blinks-example.git
+   cd blinks-example
+   ```
+
+2. Install the dependencies:
+   ```bash
+   pnpm i
+   ```
+
+3. Start the development server:
+   ```bash
+   pnpm run dev
+   ```
+## Usage
+To use this project, you can make GET and POST requests to the respective endpoints.
+
+### API Endpoints
+### GET
+##### Description: Returns a JSON payload containing donation action details.
+##### Endpoint: /api/donate
+##### Method: GET
+
+```tsx
+{
+  "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7dPPWr-BRKzBy_Fig0v_snt-_onQj9Pl5xA&s",
+  "title": "Donate to the Rahul",
+  "description": "Support rahul by donating SOL.",
+  "label": "Donate",
+  "links": {
+    "actions": [
+      {
+        "label": "Donate 0.1 SOL",
+        "href": "http://yourdomain.com/api/donate?amount=0.1"
+      }
+    ]
+  }
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### POST
+##### Description: Processes a donation transaction on the Solana blockchain.
+##### Endpoint: /api/donate
+##### Method: POST
+##### Request Body:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+{
+  "account": "SenderPublicKey"
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Response:
 
-## Learn More
+```
+{
+  "fields": {
+    "transaction": "SerializedTransaction",
+    "message": "Transaction created"
+  }
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    
